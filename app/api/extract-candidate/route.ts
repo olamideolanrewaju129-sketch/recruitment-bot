@@ -1,5 +1,7 @@
 import { ExtractedCandidate } from "@/src/types/candidate";
 
+export const maxDuration = 30;
+
 const GEMINI_MODEL = "gemini-3.6-flash";
 
 function cleanJsonText(rawText: string): string {
