@@ -17,6 +17,40 @@ function cleanJsonText(rawText: string): string {
   return cleaned.trim();
 }
 
+async function callGeminiWithRetry(url: string, payload: unknown): Promise<Response> {
+  const maxRetries = 3;
+  const backoffDelays = [2000, 4000, 8000]; // 2s before retry 1, 4s before retry 2, 8s before retry 3
+
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  for (let retry = 1; retry <= maxRetries; retry++) {
+    if (response.status !== 429) {
+      return response;
+    }
+
+    const delayMs = backoffDelays[retry - 1];
+    const delaySec = delayMs / 1000;
+    console.warn(`Rate limited, retrying in ${delaySec}s... (attempt ${retry}/${maxRetries})`);
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
+
+    response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  }
+
+  return response;
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => null);
@@ -86,23 +120,17 @@ Return ONLY a valid JSON object matching this exact structure with no markdown, 
   "strengths": ["Array", "of", "candidate strengths for this role"]
 }`;
 
-    const response = await fetch(
+    const response = await callGeminiWithRetry(
       `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: prompt }],
-            },
-          ],
-          generationConfig: {
-            responseMimeType: "application/json",
+        contents: [
+          {
+            parts: [{ text: prompt }],
           },
-        }),
+        ],
+        generationConfig: {
+          responseMimeType: "application/json",
+        },
       }
     );
 

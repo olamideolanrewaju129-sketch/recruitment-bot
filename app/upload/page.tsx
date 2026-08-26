@@ -152,8 +152,8 @@ export default function UploadPage() {
           continue;
         }
 
-        // Add 800ms delay before extraction to avoid Gemini API rate limits
-        await new Promise((resolve) => setTimeout(resolve, 800));
+        // Add 2000ms (2s) delay before extraction to avoid Gemini API rate limits
+        await new Promise((resolve) => setTimeout(resolve, 2000));
 
         // Step A: Extract candidate info
         setStatusMessage(`Extracting candidate ${i + 1} of ${total} (${item.fileName})...`);
@@ -205,8 +205,8 @@ export default function UploadPage() {
           continue;
         }
 
-        // Add 800ms delay before scoring to avoid Gemini API rate limits
-        await new Promise((resolve) => setTimeout(resolve, 800));
+        // Add 2000ms (2s) delay before scoring to avoid Gemini API rate limits
+        await new Promise((resolve) => setTimeout(resolve, 2000));
 
         // Step B: Score candidate against job description
         setStatusMessage(`Scoring candidate ${i + 1} of ${total} (${item.fileName})...`);
