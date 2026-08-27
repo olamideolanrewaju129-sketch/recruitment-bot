@@ -134,9 +134,9 @@ export default function Home() {
           <div className="flex justify-center mb-6">
             <div className="inline-flex items-center gap-2.5 rounded-full bg-[#FFFFFF] px-4 py-1.5 text-xs font-semibold text-[#141414] shadow-xs border border-[#E8E6E1] animate-pulse-slow">
               <span className="flex h-2 w-2 rounded-full bg-[#E4572E]"></span>
-              <span className="font-['Space_Grotesk'] text-[#E4572E] font-bold">Hackathon 2026</span>
+              <span className="font-['Space_Grotesk'] text-[#E4572E] font-bold">TalentBot AI</span>
               <span className="text-[#A3A3A3]">•</span>
-              <span className="text-[#525252]">Next-Gen AI Resume Screener</span>
+              <span className="text-[#525252]">Next-Generation AI Resume Screener</span>
             </div>
           </div>
 

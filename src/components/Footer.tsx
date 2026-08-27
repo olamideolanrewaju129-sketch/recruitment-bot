@@ -42,7 +42,7 @@ export default function Footer() {
               Next.js 16 App Router
             </span>
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#FBFAF8] text-[#525252] border border-[#E8E6E1]">
-              Hackathon 2026
+              AI Candidate Intelligence
             </span>
           </div>
 
