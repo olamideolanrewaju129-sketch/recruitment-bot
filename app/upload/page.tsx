@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
+import Link from "next/link";
 import {
   CandidateScore,
   ExtractedCandidate,
@@ -21,6 +22,83 @@ export default function UploadPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [retryingFileNames, setRetryingFileNames] = useState<string[]>([]);
+
+  const handleLoadDemoData = () => {
+    setJobDescription(
+      "Looking for a Senior Full-Stack Engineer with 5+ years experience building web applications using Next.js (App Router), TypeScript, Node.js, and TailwindCSS. Must have hands-on experience integrating generative AI models (such as Google Gemini or OpenAI APIs) into production features. Experience with PostgreSQL and Vector databases is a strong plus."
+    );
+
+    const demoResume1 = new File(
+      [
+        `ALEX RIVERA
+Email: alex.rivera@example.com | San Francisco, CA | 6 Years Experience
+
+PROFESSIONAL SUMMARY
+Senior Full-Stack Engineer with 6 years of experience building modern web applications, scalable APIs, and AI integrations. Deep expertise in Next.js App Router, TypeScript, React, and Google Gemini API.
+
+EXPERIENCE
+Lead Full-Stack Developer - NovaTech Solutions (2021 - Present)
+- Architected enterprise Next.js and TypeScript web platforms serving 500k+ MAU.
+- Integrated Google Gemini 3.6 Flash API to automate candidate screening and unstructured data parsing.
+- Built responsive UI components with TailwindCSS and optimized PostgreSQL database queries.
+
+Full-Stack Developer - PulseCore Apps (2018 - 2021)
+- Developed React and Node.js REST APIs and CI/CD pipelines.
+
+SKILLS & TOOLS
+Next.js, TypeScript, React, Node.js, Google Gemini API, TailwindCSS, PostgreSQL, Docker, Git.
+EDUCATION: B.S. in Computer Science - UC Berkeley (2018)`
+      ],
+      "resume_alex_rivera.txt",
+      { type: "text/plain" }
+    );
+
+    const demoResume2 = new File(
+      [
+        `SAMANTHA VANCE
+Email: samantha.vance@example.com | Austin, TX | 4 Years Experience
+
+SUMMARY
+Frontend Engineer with 4 years of experience crafting responsive web interfaces in React and Next.js. Passionate about design systems, accessibility, and modern UI engineering.
+
+EXPERIENCE
+Frontend Developer - Horizon Media (2020 - Present)
+- Developed responsive component libraries using Next.js, React, TypeScript, and TailwindCSS.
+- Collaborated with UX designers to implement polished web applications.
+- Integrated GraphQL endpoints and client-side state caching.
+
+SKILLS
+React, Next.js, TypeScript, TailwindCSS, HTML5, CSS3, GraphQL, Figma.
+EDUCATION: B.A. in Interactive Design - University of Texas (2020)`
+      ],
+      "resume_samantha_vance.txt",
+      { type: "text/plain" }
+    );
+
+    const demoResume3 = new File(
+      [
+        `JORDAN HAYES
+Email: jordan.hayes@example.com | Chicago, IL | 1 Year Experience
+
+SUMMARY
+Junior Web Developer with 1 year of experience building clean web pages and scripting backend automations. Quick learner eager to contribute to modern software teams.
+
+EXPERIENCE
+Junior Developer Intern - WebLaunch Studio (2023 - 2024)
+- Built interactive landing pages using HTML, CSS, JavaScript, and Bootstrap.
+- Wrote basic Python scripts to parse CSV reports.
+
+SKILLS
+JavaScript, Python, HTML5, CSS3, Git, Bootstrap.
+EDUCATION: Certificate in Web Development - Coding Academy (2023)`
+      ],
+      "resume_jordan_hayes.txt",
+      { type: "text/plain" }
+    );
+
+    setFiles([demoResume1, demoResume2, demoResume3]);
+  };
+
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -370,38 +448,84 @@ export default function UploadPage() {
   const isFormValid = jobDescription.trim().length > 0 && files.length > 0;
 
   return (
-    <div className="min-h-screen bg-[#FBFAF8] font-['Inter'] text-[#141414] py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-      <div className="w-full max-w-4xl space-y-8">
+    <div className="min-h-screen bg-[#FBFAF8] font-['Inter'] text-[#141414] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+      <div className="w-full max-w-4xl space-y-6">
+        {/* Navigation Breadcrumb */}
+        <div className="flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#737373] hover:text-[#141414] transition"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            <span>Back to Overview</span>
+          </Link>
+
+          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#525252] bg-[#FFFFFF] px-2.5 py-1 rounded-full border border-[#E8E6E1]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2D7A4F]"></span>
+            Gemini 3.6 Flash Active
+          </span>
+        </div>
+
         {/* Upload Card */}
-        <div className="w-full bg-[#FFFFFF] rounded-[12px] shadow-xs border border-[#E8E6E1] p-6 sm:p-8">
-          <div className="mb-6">
-            <h1 className="font-['Space_Grotesk'] text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight">
-              AI Candidate Screener & Matcher
-            </h1>
-            <p className="mt-1.5 text-sm text-[#737373]">
-              Paste the target job description and upload candidate resumes (PDF or TXT) to evaluate and rank candidate fit.
-            </p>
+        <div className="w-full bg-[#FFFFFF] rounded-2xl shadow-sm border border-[#E8E6E1] p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-[#EFECE6]">
+            <div>
+              <h1 className="font-['Space_Grotesk'] text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight">
+                AI Candidate Screener & Matcher
+              </h1>
+              <p className="mt-1 text-sm text-[#737373]">
+                Paste the target job description and upload candidate resumes to score fit in seconds.
+              </p>
+            </div>
+
+            {/* Quick Demo Loader */}
+            <button
+              type="button"
+              onClick={handleLoadDemoData}
+              disabled={isProcessing}
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-['Space_Grotesk'] font-bold bg-[#FBFAF8] hover:bg-[#F4F3F0] text-[#141414] border border-[#E8E6E1] transition shadow-xs cursor-pointer active:scale-[0.98] shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span>✨ Load Demo Preset</span>
+            </button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Job Description Field */}
             <div>
-              <label
-                htmlFor="job-description"
-                className="block text-xs uppercase font-bold tracking-wider text-[#525252] font-['Space_Grotesk'] mb-2"
-              >
-                Job Description
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label
+                  htmlFor="job-description"
+                  className="block text-xs uppercase font-bold tracking-wider text-[#525252] font-['Space_Grotesk']"
+                >
+                  Target Job Description
+                </label>
+                <span className="text-[11px] text-[#8A8A8A]">
+                  Requirements, qualifications & skills
+                </span>
+              </div>
               <textarea
                 id="job-description"
-                rows={6}
+                rows={5}
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
                 placeholder="Paste the job description, required skills, and qualifications here..."
                 disabled={isProcessing}
-                className="w-full rounded-[10px] border border-[#E8E6E1] bg-[#FFFFFF] px-4 py-3 text-sm text-[#141414] placeholder-[#A3A3A3] focus:border-[#E4572E] focus:outline-none focus:ring-1 focus:ring-[#E4572E] transition disabled:opacity-60"
+                className="w-full rounded-xl border border-[#E8E6E1] bg-[#FFFFFF] px-4 py-3 text-sm text-[#141414] placeholder-[#A3A3A3] focus:border-[#E4572E] focus:outline-none focus:ring-1 focus:ring-[#E4572E] transition disabled:opacity-60"
               />
             </div>
+
 
             {/* CV Upload Field */}
             <div>
