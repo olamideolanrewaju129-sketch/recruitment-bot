@@ -147,7 +147,7 @@ export default function Home() {
               <span className="gradient-text-orange">Neural AI Precision</span>
             </h1>
             <p className="font-['Inter'] text-base sm:text-lg text-[#666666] leading-relaxed max-w-2xl mx-auto">
-              Transform unstructured PDF and TXT resumes into structured talent profiles and match scores in seconds. Powered by <strong className="text-[#141414] font-semibold">Google Gemini 3.6 Flash</strong>.
+              Transform unstructured PDF and TXT resumes into structured talent profiles and match scores in seconds. Powered by <strong className="text-[#141414] font-semibold">Google Gemini 3.5 Flash Lite</strong>.
             </p>
 
             {/* CTAs */}

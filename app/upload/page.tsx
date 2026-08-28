@@ -474,7 +474,7 @@ EDUCATION: Certificate in Web Development - Coding Academy (2023)`
 
           <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#525252] bg-[#FFFFFF] px-2.5 py-1 rounded-full border border-[#E8E6E1]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2D7A4F]"></span>
-            Gemini 3.6 Flash Active
+            Gemini 3.5 Flash Lite Active
           </span>
         </div>
 

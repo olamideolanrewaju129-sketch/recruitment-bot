@@ -1,4 +1,4 @@
-const GEMINI_MODEL = "gemini-3.6-flash";
+const GEMINI_MODEL = "gemini-3.5-flash-lite";
 const GEMINI_PROMPT = "Say hello and confirm you are working";
 
 export async function POST() {

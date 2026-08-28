@@ -2,7 +2,7 @@ import { ExtractedCandidate } from "@/src/types/candidate";
 
 export const maxDuration = 30;
 
-const GEMINI_MODEL = "gemini-3.6-flash";
+const GEMINI_MODEL = "gemini-3.5-flash-lite";
 
 function cleanJsonText(rawText: string): string {
   let cleaned = rawText.trim();
