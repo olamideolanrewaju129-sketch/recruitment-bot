@@ -1,3 +1,10 @@
+export interface CategoryScores {
+  technical: number;
+  experience: number;
+  domain: number;
+  education: number;
+}
+
 export interface ExtractedCandidate {
   fullName: string;
   yearsOfExperience: number;
@@ -19,6 +26,10 @@ export interface CandidateScore {
   reasoning: string;
   missingSkills: string[];
   strengths: string[];
+  categoryScores?: CategoryScores;
+  suggestedInterviewQuestions?: string[];
+  outreachEmailDraft?: string;
+  matchedSkills?: string[];
 }
 
 export interface ScoredCandidate extends ExtractedCandidate, CandidateScore {

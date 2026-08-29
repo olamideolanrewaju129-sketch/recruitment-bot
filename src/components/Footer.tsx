@@ -36,7 +36,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 flex-wrap justify-center">
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#FBFAF8] text-[#525252] border border-[#E8E6E1]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#2D7A4F]"></span>
-              Google Gemini 3.5 Flash Lite
+              Google Gemini 2.5 Flash
             </span>
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#FBFAF8] text-[#525252] border border-[#E8E6E1]">
               Next.js 16 App Router

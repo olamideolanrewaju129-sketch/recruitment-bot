@@ -10,10 +10,17 @@ interface SampleCandidate {
   experience: number;
   matchScore: number;
   matchLevel: "Strong" | "Medium" | "Weak";
+  categoryScores: {
+    technical: number;
+    experience: number;
+    domain: number;
+    education: number;
+  };
   summary: string;
   strengths: string[];
   missingSkills: string[];
   skills: string[];
+  suggestedQuestions: string[];
 }
 
 const SAMPLE_ROLES = [
@@ -30,6 +37,7 @@ const SAMPLE_ROLES = [
         experience: 6,
         matchScore: 95,
         matchLevel: "Strong" as const,
+        categoryScores: { technical: 96, experience: 95, domain: 92, education: 90 },
         summary:
           "6 years building scalable web applications. Extensive experience with Next.js App Router, TypeScript, Tailwind, and Gemini API integration.",
         strengths: [
@@ -39,6 +47,10 @@ const SAMPLE_ROLES = [
         ],
         missingSkills: ["Vector database experience not explicitly detailed"],
         skills: ["Next.js", "TypeScript", "React", "Node.js", "Gemini API", "PostgreSQL", "TailwindCSS"],
+        suggestedQuestions: [
+          "Can you walk us through the architecture of an LLM feature you deployed to production?",
+          "How do you handle rate-limiting and fallback handling when orchestrating multiple Gemini models?"
+        ]
       },
       {
         id: "cand-2",
@@ -47,6 +59,7 @@ const SAMPLE_ROLES = [
         experience: 4,
         matchScore: 78,
         matchLevel: "Medium" as const,
+        categoryScores: { technical: 82, experience: 75, domain: 74, education: 88 },
         summary:
           "4 years frontend development focused on React, Next.js, and CSS design systems. Basic familiarity with backend APIs.",
         strengths: [
@@ -58,6 +71,10 @@ const SAMPLE_ROLES = [
           "No direct LLM or Gemini API integration listed",
         ],
         skills: ["React", "Next.js", "TypeScript", "TailwindCSS", "HTML5", "GraphQL"],
+        suggestedQuestions: [
+          "How would you integrate AI API streaming responses into a React/Next.js frontend?",
+          "What is your approach to building reusable design system components?"
+        ]
       },
       {
         id: "cand-3",
@@ -66,6 +83,7 @@ const SAMPLE_ROLES = [
         experience: 1,
         matchScore: 42,
         matchLevel: "Weak" as const,
+        categoryScores: { technical: 45, experience: 35, domain: 40, education: 70 },
         summary:
           "Recent bootcamp graduate with foundational JavaScript and Python skills. Eager to learn modern web frameworks.",
         strengths: ["Fast learner with foundational JavaScript and Git version control"],
@@ -75,11 +93,15 @@ const SAMPLE_ROLES = [
           "No LLM or AI workflow integration background",
         ],
         skills: ["JavaScript", "Python", "HTML/CSS", "Git", "Bootstrap"],
+        suggestedQuestions: [
+          "What software projects have you built that demonstrate your problem-solving speed?",
+          "How do you approach learning complex frameworks like Next.js App Router?"
+        ]
       },
     ],
   },
   {
-    title: "AI Product Manager",
+    title: "Lead AI Product Manager",
     dept: "Product",
     description:
       "Seeking a Product Manager with 4+ years shipping AI/ML consumer and B2B products. Must have experience with user metrics, agile roadmapping, and AI safety.",
@@ -91,6 +113,7 @@ const SAMPLE_ROLES = [
         experience: 5,
         matchScore: 92,
         matchLevel: "Strong" as const,
+        categoryScores: { technical: 90, experience: 95, domain: 94, education: 92 },
         summary:
           "5 years product management scaling generative AI tools from 0 to 1M+ active users. Deep domain knowledge in LLM benchmarks and user retention.",
         strengths: [
@@ -100,6 +123,10 @@ const SAMPLE_ROLES = [
         ],
         missingSkills: ["B2B enterprise contract negotiation experience unverified"],
         skills: ["Product Roadmap", "LLM Evals", "Agile/Scrum", "User Retention", "SQL", "Figma"],
+        suggestedQuestions: [
+          "How do you establish benchmark evaluation metrics for non-deterministic LLM products?",
+          "Can you describe a trade-off between model latency and quality in a user-facing product?"
+        ]
       },
       {
         id: "cand-5",
@@ -108,11 +135,15 @@ const SAMPLE_ROLES = [
         experience: 3,
         matchScore: 68,
         matchLevel: "Medium" as const,
+        categoryScores: { technical: 65, experience: 70, domain: 68, education: 80 },
         summary:
           "3 years managing software sprint cycles and user research interviews. Strong communicator with basic AI product exposure.",
         strengths: ["Strong sprint management and stakeholder alignment"],
         missingSkills: ["Lacks 4+ years requirement", "Limited hands-on generative AI product leadership"],
         skills: ["Jira", "User Interviews", "Agile", "Product Analytics"],
+        suggestedQuestions: [
+          "How do you prioritize engineering backlog when experimenting with emerging AI features?"
+        ]
       },
     ],
   },
@@ -130,24 +161,24 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 px-4 sm:px-6 lg:px-8 border-b border-[#E8E6E1] bg-radial-glow">
         <div className="mx-auto max-w-6xl">
-          {/* Top Announcement Badge */}
+          {/* Top Hackathon Badge */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2.5 rounded-full bg-[#FFFFFF] px-4 py-1.5 text-xs font-semibold text-[#141414] shadow-xs border border-[#E8E6E1] animate-pulse-slow">
-              <span className="flex h-2 w-2 rounded-full bg-[#E4572E]"></span>
-              <span className="font-['Space_Grotesk'] text-[#E4572E] font-bold">TalentBot AI</span>
+            <div className="inline-flex items-center gap-2.5 rounded-full bg-[#FFFFFF] px-4 py-1.5 text-xs font-semibold text-[#141414] shadow-xs border border-[#E8E6E1]">
+              <span className="flex h-2 w-2 rounded-full bg-[#E4572E] animate-pulse"></span>
+              <span className="font-['Space_Grotesk'] text-[#E4572E] font-bold">TalentAI Engine</span>
               <span className="text-[#A3A3A3]">•</span>
-              <span className="text-[#525252]">Next-Generation AI Resume Screener</span>
+              <span className="text-[#525252]">Next-Gen Neural Candidate Screener</span>
             </div>
           </div>
 
           {/* Main Hero Header */}
           <div className="text-center max-w-3xl mx-auto space-y-5">
             <h1 className="font-['Space_Grotesk'] text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#141414] leading-[1.1]">
-              Screen & Rank Candidates with{" "}
-              <span className="gradient-text-orange">Neural AI Precision</span>
+              AI Candidate Screening with{" "}
+              <span className="gradient-text-orange">Neural Precision</span>
             </h1>
             <p className="font-['Inter'] text-base sm:text-lg text-[#666666] leading-relaxed max-w-2xl mx-auto">
-              Transform unstructured PDF and TXT resumes into structured talent profiles and match scores in seconds. Powered by <strong className="text-[#141414] font-semibold">Google Gemini 3.5 Flash Lite</strong>.
+              Transform unstructured PDF, DOCX, DOC, and TXT resumes into multi-dimensional talent scores, custom interview kits, and instant rankings. Powered by <strong className="text-[#141414] font-semibold">Google Gemini 2.5 Flash</strong>.
             </p>
 
             {/* CTAs */}
@@ -157,50 +188,30 @@ export default function Home() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#141414] px-7 py-3.5 font-['Space_Grotesk'] text-sm font-bold text-white shadow-md hover:bg-[#2B2B2B] hover:shadow-lg transition-all active:scale-[0.98]"
               >
                 <span>Launch Candidate Screener</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </Link>
               <a
                 href="#live-demo"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-[#E8E6E1] bg-white px-6 py-3.5 font-['Space_Grotesk'] text-sm font-bold text-[#141414] hover:bg-[#F4F3F0] hover:border-[#D0CDC5] transition-all shadow-xs"
               >
-                <span>Explore Interactive Demo</span>
-                <svg
-                  className="w-4 h-4 text-[#737373]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
+                <span>Explore Live Interactive Demo</span>
+                <svg className="w-4 h-4 text-[#737373]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </a>
             </div>
           </div>
 
-          {/* Hero Interactive Card Preview */}
+          {/* Hero Live Preview Card */}
           <div className="mt-14 max-w-4xl mx-auto">
             <div className="rounded-2xl border border-[#E8E6E1] bg-[#FFFFFF] p-6 sm:p-8 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#E4572E]/5 rounded-full blur-3xl pointer-events-none" />
 
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-[#EFECE6]">
-                <div className="flex items-center gap-3">
-                  <div className="h-11 w-11 rounded-full bg-[#EBF5EE] text-[#2D7A4F] border border-[#2D7A4F]/20 flex items-center justify-center font-['Space_Grotesk'] font-bold text-sm">
+                <div className="flex items-center gap-3.5">
+                  <div className="h-12 w-12 rounded-2xl bg-[#EBF5EE] text-[#2D7A4F] border border-[#2D7A4F]/20 flex items-center justify-center font-['Space_Grotesk'] font-bold text-sm">
                     AR
                   </div>
                   <div>
@@ -211,15 +222,18 @@ export default function Home() {
                       <span className="rounded-md bg-[#F4F3F0] px-2 py-0.5 text-[11px] font-medium text-[#525252]">
                         6 yrs exp
                       </span>
+                      <span className="rounded-md bg-[#2D7A4F]/10 text-[#2D7A4F] px-2 py-0.5 text-[10px] font-bold">
+                        Top Fit #1
+                      </span>
                     </div>
-                    <p className="text-xs text-[#737373]">resume_alex_rivera.pdf • Full-Stack AI Engineer</p>
+                    <p className="text-xs text-[#737373] mt-0.5">resume_alex_rivera.pdf • Full-Stack AI Engineer</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 self-end md:self-auto">
                   <div className="text-right">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#737373] block">
-                      AI Match Score
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#737373] block font-['Space_Grotesk']">
+                      Overall Match
                     </span>
                     <span className="font-['Space_Grotesk'] text-2xl font-black text-[#2D7A4F]">
                       95<span className="text-xs font-normal text-[#8A8A8A]">/100</span>
@@ -231,12 +245,32 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Sub-metrics bar */}
+              <div className="py-4 grid grid-cols-2 sm:grid-cols-4 gap-2 border-b border-[#EFECE6] text-[11px]">
+                <div className="p-2.5 rounded-xl bg-[#FBFAF8] border border-[#E8E6E1]">
+                  <span className="text-[#737373] block text-[10px] uppercase font-bold font-['Space_Grotesk']">Technical Skills</span>
+                  <span className="font-bold text-sm text-[#141414] font-['Space_Grotesk']">96%</span>
+                </div>
+                <div className="p-2.5 rounded-xl bg-[#FBFAF8] border border-[#E8E6E1]">
+                  <span className="text-[#737373] block text-[10px] uppercase font-bold font-['Space_Grotesk']">Experience Fit</span>
+                  <span className="font-bold text-sm text-[#141414] font-['Space_Grotesk']">95%</span>
+                </div>
+                <div className="p-2.5 rounded-xl bg-[#FBFAF8] border border-[#E8E6E1]">
+                  <span className="text-[#737373] block text-[10px] uppercase font-bold font-['Space_Grotesk']">Domain Stack</span>
+                  <span className="font-bold text-sm text-[#141414] font-['Space_Grotesk']">92%</span>
+                </div>
+                <div className="p-2.5 rounded-xl bg-[#FBFAF8] border border-[#E8E6E1]">
+                  <span className="text-[#737373] block text-[10px] uppercase font-bold font-['Space_Grotesk']">Education / Certs</span>
+                  <span className="font-bold text-sm text-[#141414] font-['Space_Grotesk']">90%</span>
+                </div>
+              </div>
+
               {/* Card Body Details */}
-              <div className="pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="pt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-[11px] uppercase font-bold tracking-wider text-[#737373] font-['Space_Grotesk'] mb-1.5">
-                      Candidate Summary
+                      Candidate Profile Summary
                     </h4>
                     <p className="text-xs text-[#333333] leading-relaxed">
                       Senior engineer with 6 years building high-concurrency Next.js applications and integrating LLM workflows via Google Gemini API.
@@ -245,7 +279,7 @@ export default function Home() {
 
                   <div>
                     <h4 className="text-[11px] uppercase font-bold tracking-wider text-[#737373] font-['Space_Grotesk'] mb-1.5">
-                      Verified Skills
+                      Verified Skill Alignment
                     </h4>
                     <div className="flex flex-wrap gap-1.5">
                       {["Next.js", "TypeScript", "Gemini API", "React", "PostgreSQL", "TailwindCSS"].map((s) => (
@@ -289,7 +323,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. STATS & RECRUITER ROI */}
+      {/* 2. STATS & RECRUITER METRICS */}
       <section className="py-12 bg-[#FFFFFF] border-b border-[#E8E6E1]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -303,10 +337,10 @@ export default function Home() {
             </div>
             <div className="p-4">
               <span className="font-['Space_Grotesk'] text-3xl sm:text-4xl font-extrabold text-[#E4572E] block">
-                &lt; 3s
+                &lt; 2s
               </span>
               <span className="text-xs sm:text-sm text-[#737373] mt-1 block">
-                AI Extraction & Scoring Speed
+                Multi-Dimensional AI Scoring
               </span>
             </div>
             <div className="p-4">
@@ -314,15 +348,15 @@ export default function Home() {
                 100%
               </span>
               <span className="text-xs sm:text-sm text-[#737373] mt-1 block">
-                Objective Metric Evaluation
+                Objective & Explainable Scoring
               </span>
             </div>
             <div className="p-4">
               <span className="font-['Space_Grotesk'] text-3xl sm:text-4xl font-extrabold text-[#2D7A4F] block">
-                Bulk
+                Multi-Doc
               </span>
               <span className="text-xs sm:text-sm text-[#737373] mt-1 block">
-                PDF & TXT Multi-Resume Support
+                PDF, DOCX & TXT Ingestion
               </span>
             </div>
           </div>
@@ -340,7 +374,7 @@ export default function Home() {
               Test Candidate Matching in Real-Time
             </h2>
             <p className="text-sm text-[#666666] mt-2">
-              Select a target job opening and click through ranked candidates to see how the AI bot evaluates qualification fit and flags gaps.
+              Select a target role and explore how the AI recruiter bot extracts skills, computes category scores, and formulates interview questions.
             </p>
           </div>
 
@@ -387,18 +421,18 @@ export default function Home() {
 
               <div className="mt-6 pt-4 border-t border-[#EFECE6] flex items-center justify-between">
                 <span className="text-xs text-[#737373]">
-                  {currentRole.candidates.length} candidate resumes submitted
+                  {currentRole.candidates.length} candidate resumes evaluated
                 </span>
                 <Link
                   href="/upload"
                   className="inline-flex items-center gap-1.5 text-xs font-bold font-['Space_Grotesk'] text-[#E4572E] hover:underline"
                 >
-                  <span>Score your own resumes →</span>
+                  <span>Score your own files →</span>
                 </Link>
               </div>
             </div>
 
-            {/* Right Col: Candidate Results / Ranking */}
+            {/* Right Col: Candidate Results */}
             <div className="lg:col-span-7 space-y-4">
               {/* Candidate Selector Tabs */}
               <div className="flex items-center gap-2 overflow-x-auto pb-1">
@@ -445,7 +479,8 @@ export default function Home() {
                   </div>
 
                   <div className="text-right">
-                    <span className="font-['Space_Grotesk'] text-2xl font-black block"
+                    <span
+                      className="font-['Space_Grotesk'] text-2xl font-black block"
                       style={{
                         color:
                           activeCandidate.matchLevel === "Strong"
@@ -472,20 +507,24 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Score Progress Bar */}
-                <div className="w-full bg-[#F0EFEA] h-2 rounded-full overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-500"
-                    style={{
-                      width: `${activeCandidate.matchScore}%`,
-                      backgroundColor:
-                        activeCandidate.matchLevel === "Strong"
-                          ? "#2D7A4F"
-                          : activeCandidate.matchLevel === "Medium"
-                          ? "#E4572E"
-                          : "#B23A3A",
-                    }}
-                  />
+                {/* Granular Sub-scores */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
+                  <div className="p-2 rounded-lg bg-[#FBFAF8] border border-[#E8E6E1]">
+                    <span className="text-[#737373] block text-[10px]">Tech Fit:</span>
+                    <span className="font-bold text-[#141414] font-['Space_Grotesk']">{activeCandidate.categoryScores.technical}%</span>
+                  </div>
+                  <div className="p-2 rounded-lg bg-[#FBFAF8] border border-[#E8E6E1]">
+                    <span className="text-[#737373] block text-[10px]">Experience:</span>
+                    <span className="font-bold text-[#141414] font-['Space_Grotesk']">{activeCandidate.categoryScores.experience}%</span>
+                  </div>
+                  <div className="p-2 rounded-lg bg-[#FBFAF8] border border-[#E8E6E1]">
+                    <span className="text-[#737373] block text-[10px]">Domain:</span>
+                    <span className="font-bold text-[#141414] font-['Space_Grotesk']">{activeCandidate.categoryScores.domain}%</span>
+                  </div>
+                  <div className="p-2 rounded-lg bg-[#FBFAF8] border border-[#E8E6E1]">
+                    <span className="text-[#737373] block text-[10px]">Education:</span>
+                    <span className="font-bold text-[#141414] font-['Space_Grotesk']">{activeCandidate.categoryScores.education}%</span>
+                  </div>
                 </div>
 
                 {/* Summary */}
@@ -523,21 +562,19 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Skills */}
-                <div className="pt-2 border-t border-[#EFECE6]">
-                  <span className="text-[11px] uppercase font-bold tracking-wider text-[#737373] font-['Space_Grotesk'] block mb-1.5">
-                    Extracted Skills
+                {/* AI Interview Questions preview */}
+                <div className="p-3.5 rounded-xl bg-[#FBFAF8] border border-[#E8E6E1]">
+                  <span className="text-xs font-bold text-[#141414] font-['Space_Grotesk'] block mb-1.5 flex items-center gap-1.5">
+                    <span>🎯 AI Interview Questions Preview</span>
                   </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {activeCandidate.skills.map((s) => (
-                      <span
-                        key={s}
-                        className="px-2 py-0.5 text-[11px] rounded bg-[#F4F3F0] text-[#141414] border border-[#E8E6E1] font-medium"
-                      >
-                        {s}
-                      </span>
+                  <ul className="text-xs text-[#525252] space-y-1.5">
+                    {activeCandidate.suggestedQuestions.map((q, i) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="font-bold text-[#E4572E]">•</span>
+                        <span>{q}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -550,13 +587,13 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs uppercase font-bold tracking-wider text-[#E4572E] font-['Space_Grotesk'] block mb-2">
-              Features
+              Features & Innovation
             </span>
             <h2 className="font-['Space_Grotesk'] text-3xl sm:text-4xl font-bold text-[#141414] tracking-tight">
-              Engineered for Frictionless Recruiter Workflows
+              Built for High-Precision Recruiting
             </h2>
             <p className="text-sm text-[#666666] mt-2">
-              Say goodbye to scanning resumes manually. Our AI handles the heavy lifting so recruiters focus on interviewing top talent.
+              Automates manual resume review with zero-loss text ingestion, multi-model AI inference, and recruiter toolkits.
             </p>
           </div>
 
@@ -570,10 +607,10 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="font-['Space_Grotesk'] text-base font-bold text-[#141414] mb-2">
-                  Bulk PDF & TXT Ingestion
+                  Bulk PDF & DOCX Ingestion
                 </h3>
                 <p className="text-xs text-[#666666] leading-relaxed">
-                  Drop multiple candidate resumes simultaneously. The built-in parser extracts text accurately from complex layouts with zero formatting loss.
+                  Extracts structured text from complex PDF, DOCX, DOC, and TXT layouts seamlessly without losing formatting context.
                 </p>
               </div>
             </div>
@@ -587,10 +624,10 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="font-['Space_Grotesk'] text-base font-bold text-[#141414] mb-2">
-                  Semantic Neural Scoring
+                  Multi-Dimensional Scoring
                 </h3>
                 <p className="text-xs text-[#666666] leading-relaxed">
-                  Goes far beyond basic keyword matching. Evaluates years of experience, technical competency, and relevance against nuanced job criteria.
+                  Evaluates candidates across Technical Fit, Experience Seniority, Domain Fit, and Education with explainable metrics.
                 </p>
               </div>
             </div>
@@ -604,10 +641,10 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="font-['Space_Grotesk'] text-base font-bold text-[#141414] mb-2">
-                  Gap & Strength Analysis
+                  AI Recruiter Supertools
                 </h3>
                 <p className="text-xs text-[#666666] leading-relaxed">
-                  Automatically pinpoints exact missing skills, qualification gaps, and standout candidate highlights to inform screening interviews.
+                  Auto-generates customized interview questions targeting specific skill gaps and drafts personalized outreach messages.
                 </p>
               </div>
             </div>
@@ -621,10 +658,10 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="font-['Space_Grotesk'] text-base font-bold text-[#141414] mb-2">
-                  Ranked Leaderboard
+                  Side-by-Side & Export
                 </h3>
                 <p className="text-xs text-[#666666] leading-relaxed">
-                  Automatically orders candidate results by overall match score (Strong, Medium, Weak), giving hiring managers an instant shortlist.
+                  Compare top contenders head-to-head on key criteria and export ranked shortlists to CSV in 1 click.
                 </p>
               </div>
             </div>
@@ -632,78 +669,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. HOW IT WORKS */}
-      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 border-b border-[#E8E6E1] bg-[#FBFAF8]">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs uppercase font-bold tracking-wider text-[#E4572E] font-['Space_Grotesk'] block mb-2">
-              Workflow
-            </span>
-            <h2 className="font-['Space_Grotesk'] text-3xl sm:text-4xl font-bold text-[#141414] tracking-tight">
-              3 Simple Steps to Shortlist Talent
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {/* Step 1 */}
-            <div className="rounded-2xl bg-[#FFFFFF] border border-[#E8E6E1] p-8 relative">
-              <span className="font-['Space_Grotesk'] text-5xl font-black text-[#EFECE6] absolute top-6 right-6">
-                01
-              </span>
-              <div className="w-10 h-10 rounded-xl bg-[#141414] text-white flex items-center justify-center font-['Space_Grotesk'] font-bold text-sm mb-5">
-                1
-              </div>
-              <h3 className="font-['Space_Grotesk'] text-lg font-bold text-[#141414] mb-2">
-                Paste Job Description
-              </h3>
-              <p className="text-xs text-[#666666] leading-relaxed">
-                Add role responsibilities, required years of experience, programming languages, and desired qualifications.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="rounded-2xl bg-[#FFFFFF] border border-[#E8E6E1] p-8 relative">
-              <span className="font-['Space_Grotesk'] text-5xl font-black text-[#EFECE6] absolute top-6 right-6">
-                02
-              </span>
-              <div className="w-10 h-10 rounded-xl bg-[#E4572E] text-white flex items-center justify-center font-['Space_Grotesk'] font-bold text-sm mb-5">
-                2
-              </div>
-              <h3 className="font-['Space_Grotesk'] text-lg font-bold text-[#141414] mb-2">
-                Upload Resumes in Bulk
-              </h3>
-              <p className="text-xs text-[#666666] leading-relaxed">
-                Drag and drop multiple candidate resumes in PDF or TXT format. Our parser extracts structured text instantly.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="rounded-2xl bg-[#FFFFFF] border border-[#E8E6E1] p-8 relative">
-              <span className="font-['Space_Grotesk'] text-5xl font-black text-[#EFECE6] absolute top-6 right-6">
-                03
-              </span>
-              <div className="w-10 h-10 rounded-xl bg-[#2D7A4F] text-white flex items-center justify-center font-['Space_Grotesk'] font-bold text-sm mb-5">
-                3
-              </div>
-              <h3 className="font-['Space_Grotesk'] text-lg font-bold text-[#141414] mb-2">
-                Receive Shortlist & Scores
-              </h3>
-              <p className="text-xs text-[#666666] leading-relaxed">
-                Gemini AI parses, benchmarks, and ranks candidate scores from 0-100 with comprehensive strength and gap summaries.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. BOTTOM CTA BANNER */}
+      {/* 5. BOTTOM CTA BANNER */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#141414] text-white">
         <div className="mx-auto max-w-4xl text-center space-y-6">
           <h2 className="font-['Space_Grotesk'] text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Ready to Supercharge Your Recruitment Pipeline?
+            Ready to Experience Next-Gen Candidate Intelligence?
           </h2>
           <p className="text-sm text-[#A3A3A3] max-w-xl mx-auto">
-            Experience lightning-fast resume evaluation. Test it live with your own resumes or our preloaded mock dataset.
+            Test live with your own candidate resumes or load preset roles to see instant rankings and interview kits.
           </p>
           <div className="pt-2">
             <Link
