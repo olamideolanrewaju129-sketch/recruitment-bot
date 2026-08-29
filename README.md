@@ -9,14 +9,14 @@
 
 ---
 
-## 🌟 Live Links & Repository
+##  Live Links & Repository
 
-- **🌐 Live Web Application:** [https://recruitment-bot-pi.vercel.app/](https://recruitment-bot-pi.vercel.app/)
-- **💻 GitHub Source Code:** [https://github.com/olamideolanrewaju129-sketch/recruitment-bot](https://github.com/olamideolanrewaju129-sketch/recruitment-bot)
+- ** Live Web Application:** [https://recruitment-bot-pi.vercel.app/](https://recruitment-bot-pi.vercel.app/)
+- ** GitHub Source Code:** [https://github.com/olamideolanrewaju129-sketch/recruitment-bot](https://github.com/olamideolanrewaju129-sketch/recruitment-bot)
 
 ---
 
-## 💡 The Problem & The Solution
+## The Problem & The Solution
 
 ### The Challenge
 Recruiters and hiring managers spend an average of **6 to 8 hours per job opening** manually reading hundreds of unstructured resumes across varying formats (.pdf, .docx, .txt). Traditional keyword applicant tracking systems (ATS) often fail because they lack semantic understanding—missing top candidates who describe their experience with synonyms or nuance.
@@ -26,33 +26,33 @@ TalentAI uses **Google Gemini 2.5 Flash** to provide deep semantic evaluation of
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
 ### 1. 📄 Multi-Format Resume Ingestion (.PDF, .DOCX, .DOC, .TXT)
 - Direct client-side text extraction using **Mammoth.js** (Word documents) and **PDF.js** (PDFs).
 - Instant multi-file upload support—drop 10+ resumes simultaneously with zero formatting loss and no server storage requirement.
 
-### 2. 🎯 Multi-Dimensional Candidate Scoring
+### 2.  Multi-Dimensional Candidate Scoring
 Evaluates candidates across 4 core dimensions rather than just a single score:
 - **Technical Skills Fit (0–100%):** Matching specific programming languages, frameworks, and tools.
 - **Experience Seniority (0–100%):** Verifying required years of production experience and career progression.
 - **Domain & Tech Stack Fit (0–100%):** Relevance to role responsibilities and domain context.
 - **Education & Certifications (0–100%):** Verification of degrees and industry credentials.
 
-### 3. 🛠️ Recruiter Supertools (AI Interview Kit & Outreach Generator)
+### 3.  Recruiter Supertools (AI Interview Kit & Outreach Generator)
 - **Tailored AI Interview Questions:** Automatically generates 3 custom behavioral & technical questions targeting the candidate's exact background and flagged skill gaps, with 1-click copy buttons.
 - **Personalized Recruiter Outreach:** Auto-drafts an introductory outreach message highlighting the candidate's strongest points.
 - **Side-by-Side Candidate Comparator:** Head-to-head modal comparing top candidates on match scores, top strengths, and gaps.
 - **One-Click CSV Export:** Export ranked candidate shortlists with scores, notes, and metrics for team review.
 
-### 4. ⚡ Resilient AI Cascade & Live Demo Presets
+### 4.  Resilient AI Cascade & Live Demo Presets
 - **Multi-Model Cascade:** Backed by Google Gemini models (`gemini-2.5-flash`, `gemini-2.0-flash`, `gemini-1.5-flash`).
 - **Fail-Safe Heuristic Engine:** Includes a smart entity extraction & semantic fallback engine to ensure 100% uptime during live presentations even during network interruptions.
 - **Interactive 1-Click Role Presets:** Test pre-loaded roles (*Senior Full-Stack AI Engineer*, *Lead AI Product Manager*) with mock candidate resumes instantly without uploading manual files.
 
 ---
 
-## 🏗️ Architecture & Workflow
+##  Architecture & Workflow
 
 ```mermaid
 graph TD
@@ -77,7 +77,7 @@ graph TD
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 | Layer | Technologies |
 |---|---|
@@ -90,7 +90,7 @@ graph TD
 
 ---
 
-## 💻 Getting Started Locally
+##  Getting Started Locally
 
 ### Prerequisites
 - **Node.js**: v18.18.0 or higher (v20+ recommended)
@@ -129,8 +129,7 @@ graph TD
    ```
 
 ---
-
-## 🔌 API Endpoints Reference
+##  API Endpoints Reference
 
 ### 1. `POST /api/extract-candidate`
 Extracts structured candidate data from unstructured resume text.
@@ -190,7 +189,7 @@ Health check endpoint to test Gemini API connectivity.
 
 ---
 
-## 📄 License & Attribution
+##  License & Attribution
 
 Built by [Olamide Olanrewaju](https://github.com/olamideolanrewaju129-sketch) for modern recruitment and talent acquisition workflows.
 
