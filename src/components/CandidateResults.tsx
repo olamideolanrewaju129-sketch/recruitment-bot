@@ -425,35 +425,44 @@ export default function CandidateResults({
             <button
               type="button"
               onClick={() => setActiveTab("overview")}
-              className={`pb-3 text-xs sm:text-sm font-['Space_Grotesk'] font-bold border-b-2 transition cursor-pointer ${
+              className={`pb-3 text-xs sm:text-sm font-['Space_Grotesk'] font-bold border-b-2 transition cursor-pointer inline-flex items-center gap-2 ${
                 activeTab === "overview"
                   ? "border-[#E4572E] text-[#E4572E]"
                   : "border-transparent text-[#737373] hover:text-[#141414]"
               }`}
             >
-              📊 Evaluation Breakdown
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              <span>Evaluation Breakdown</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveTab("interview")}
-              className={`pb-3 text-xs sm:text-sm font-['Space_Grotesk'] font-bold border-b-2 transition cursor-pointer ${
+              className={`pb-3 text-xs sm:text-sm font-['Space_Grotesk'] font-bold border-b-2 transition cursor-pointer inline-flex items-center gap-2 ${
                 activeTab === "interview"
                   ? "border-[#E4572E] text-[#E4572E]"
                   : "border-transparent text-[#737373] hover:text-[#141414]"
               }`}
             >
-              🎯 AI Interview Kit
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>AI Interview Kit</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveTab("outreach")}
-              className={`pb-3 text-xs sm:text-sm font-['Space_Grotesk'] font-bold border-b-2 transition cursor-pointer ${
+              className={`pb-3 text-xs sm:text-sm font-['Space_Grotesk'] font-bold border-b-2 transition cursor-pointer inline-flex items-center gap-2 ${
                 activeTab === "outreach"
                   ? "border-[#E4572E] text-[#E4572E]"
                   : "border-transparent text-[#737373] hover:text-[#141414]"
               }`}
             >
-              ✉️ Recruiter Outreach
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>Recruiter Outreach</span>
             </button>
           </div>
 
@@ -672,9 +681,11 @@ export default function CandidateResults({
               <button
                 type="button"
                 onClick={() => setShowCompareModal(false)}
-                className="p-2 rounded-lg text-[#8A8A8A] hover:bg-[#F4F3F0] hover:text-[#141414]"
+                className="p-2 rounded-lg text-[#8A8A8A] hover:bg-[#F4F3F0] hover:text-[#141414] transition cursor-pointer"
               >
-                ✕
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 

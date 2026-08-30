@@ -424,7 +424,10 @@ export default function UploadPage() {
                   disabled={isProcessing}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-['Space_Grotesk'] font-bold bg-[#FBFAF8] hover:bg-[#F4F3F0] text-[#141414] border border-[#E8E6E1] transition shadow-xs cursor-pointer active:scale-[0.98] disabled:opacity-50"
                 >
-                  <span>✨ {preset.label.split(" ")[0]} Role</span>
+                  <svg className="w-3.5 h-3.5 text-[#E4572E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  <span>{preset.label.split(" ")[0]} Role</span>
                 </button>
               ))}
             </div>
@@ -583,7 +586,12 @@ export default function UploadPage() {
                     <span>{statusMessage || "Analyzing candidates..."}</span>
                   </>
                 ) : (
-                  <span>🚀 Analyze & Rank Candidates</span>
+                  <>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span>Analyze & Rank Candidates</span>
+                  </>
                 )}
               </button>
             </div>
